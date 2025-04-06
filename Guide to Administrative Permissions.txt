@@ -1,0 +1,92 @@
+To allow your antivirus model to scan system files 
+and other protected areas, you'll need to make sure the program has the necessary permissions to
+access those files, which may be restricted due to Windows security settings.
+
+Steps to Give Permissions for Full System Scan:
+1. Run the Program as Administrator
+Windows has restrictions on accessing certain system files and folders.
+Running the program as an Administrator will grant it the necessary permissions to access protected files
+(like C:/pagefile.sys, C:/hiberfil.sys, etc.).
+*********************************************************************************************
+#############################################################################################
+How to Run as Administrator:
+
+Right-click on the Command Prompt or PowerShell shortcut.
+Select "Run as administrator".
+In the elevated Command Prompt or PowerShell, navigate to your project directory:
+bash
+Copy code
+cd D:\BSCS\PROJECTS\antivirus-main #path to the folder  
+Then, run your Python script:
+bash
+Copy code
+python ui_main.py 
+This will allow the script to access restricted files while scanning.
+
+2. Grant Access to Specific Files or Folders (User Account Control - UAC)
+If you want to give access to specific folders or files to your antivirus model,
+you can manually modify the permissions for these files/folders.
+
+Steps to Manually Modify Permissions:
+
+Right-click on the folder (e.g., C:/ or C:/Windows) or file (e.g., C:/pagefile.sys) you want to give access to.
+Select Properties.
+Go to the Security tab.
+Click on Edit to change permissions.
+Select the user or group (like Administrator or Everyone) and check Full Control.
+Apply the changes.
+
+3. Temporarily Disable Antivirus Software (Optional)
+Some antivirus software might block or restrict access to system files, especially when scanning sensitive files.
+If you're using a third-party antivirus, try temporarily disabling it during testing to avoid interference. 
+Be sure to re-enable it afterward.
+
+4. Allow File Access for Python (Windows Defender SmartScreen)
+If Windows Defender is blocking access to certain files, you may need to adjust Windows Defender settings to 
+allow your Python program to run without restrictions.
+
+How to Allow Access for Python:
+
+Open Windows Security from the Start Menu.
+Click on Virus & Threat Protection.
+Scroll down and click Manage Settings under "Virus & Threat Protection Settings".
+Under Controlled Folder Access, make sure it’s turned off, or add your Python script as an allowed program.
+
+5. Using Elevated Privileges for Specific Files
+If you're trying to access specific system files like C:/pagefile.sys or C:/hiberfil.sys, 
+and you're getting permission errors, you might need to run the Python script in administrator mode or 
+use a method like Windows Task Scheduler to run the script with elevated permissions automatically.
+
+
+Quick Summary:
+Run the script as Administrator: Right-click on the Command Prompt and select "Run as administrator".
+Modify file permissions: For specific folders or files, modify permissions to grant access (full control).
+Adjust antivirus/defender settings: Temporarily disable or adjust your antivirus software to prevent blocking of files.
+Disable Windows Defender SmartScreen (optional): If it's blocking files, adjust the security settings accordingly.
+
+*******************************************************************
+###################################################################
+Using a Shortcut for Administrator Privileges
+If you frequently run the script and want to avoid manually opening Command Prompt or PowerShell each time:
+
+Create a Shortcut:
+
+Locate your Python script (ui_main.py).
+Right-click on it and select Create Shortcut.
+Edit the Shortcut:
+
+Right-click on the shortcut and select Properties.
+In the Target field, add the path to your Python executable followed by the script. For example:
+swift
+Copy code
+"C:\Path\to\python.exe" "D:\BSCS\PROJECTS\antivirus-main\ui_main.py"
+Click OK to save changes.
+Run as Administrator:
+
+Right-click on the shortcut and select Properties.
+Go to the Shortcut tab and click Advanced.
+Check the box for Run as administrator.
+Click OK.
+Now, double-clicking the shortcut will automatically run the script as Administrator.
+
+
